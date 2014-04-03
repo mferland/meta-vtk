@@ -1,0 +1,62 @@
+From f8077dfcada6d64939ccf99898311cf1d3e38d2b Mon Sep 17 00:00:00 2001
+From: Marc Ferland <marc.ferland@gmail.com>
+Date: Sat, 1 Mar 2014 15:58:20 -0500
+Subject: [PATCH] vtkCompileTools: Add a CompileTools group
+
+Signed-off-by: Marc Ferland <marc.ferland@gmail.com>
+---
+ Utilities/EncodeString/module.cmake | 3 +++
+ Utilities/HashSource/module.cmake   | 2 ++
+ Utilities/ParseOGLExt/module.cmake  | 2 ++
+ Wrapping/Tools/module.cmake         | 5 +++++
+ 4 files changed, 12 insertions(+)
+
+diff --git a/Utilities/EncodeString/module.cmake b/Utilities/EncodeString/module.cmake
+index d2bdc0a..4d08e3d 100644
+--- a/Utilities/EncodeString/module.cmake
++++ b/Utilities/EncodeString/module.cmake
+@@ -1,4 +1,7 @@
+ vtk_module(vtkUtilitiesEncodeString
++  GROUPS
++    CompileTools
+   DEPENDS
+     vtksys
++    vtkCommonCore
+   EXCLUDE_FROM_WRAPPING)
+diff --git a/Utilities/HashSource/module.cmake b/Utilities/HashSource/module.cmake
+index f29b54e..53852f5 100644
+--- a/Utilities/HashSource/module.cmake
++++ b/Utilities/HashSource/module.cmake
+@@ -1,4 +1,6 @@
+ vtk_module(vtkUtilitiesHashSource
++  GROUPS
++    CompileTools
+   DEPENDS
+     vtksys
+   EXCLUDE_FROM_WRAPPING
+diff --git a/Utilities/ParseOGLExt/module.cmake b/Utilities/ParseOGLExt/module.cmake
+index c0f6dbc..ac7a7bf 100644
+--- a/Utilities/ParseOGLExt/module.cmake
++++ b/Utilities/ParseOGLExt/module.cmake
+@@ -1,2 +1,4 @@
+ vtk_module(vtkParseOGLExt
++  GROUPS
++    CompileTools
+   EXCLUDE_FROM_WRAPPING)
+diff --git a/Wrapping/Tools/module.cmake b/Wrapping/Tools/module.cmake
+index e2e0078..d39a618 100644
+--- a/Wrapping/Tools/module.cmake
++++ b/Wrapping/Tools/module.cmake
+@@ -1,4 +1,9 @@
+ vtk_module(vtkWrappingTools
++  GROUPS
++    CompileTools
++  DEPENDS
++    vtkCommonCore
++    vtksys
+   COMPILE_DEPENDS
+     vtkCommonCore
+     vtksys
+-- 
+1.8.3.2
+

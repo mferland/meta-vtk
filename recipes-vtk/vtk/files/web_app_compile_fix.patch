@@ -1,0 +1,13 @@
+Index: VTK-6.1.0/Web/Applications/CMakeLists.txt
+===================================================================
+--- VTK-6.1.0.orig/Web/Applications/CMakeLists.txt	2014-04-01 15:14:11.442245288 -0400
++++ VTK-6.1.0/Web/Applications/CMakeLists.txt	2014-04-01 15:16:27.930240562 -0400
+@@ -12,6 +12,8 @@
+ 
+ set(WEB_APPS_DEPENDS)
+ 
++include(vtkPythonPackages)
++
+ foreach(_app ${WEB_APPLICATIONS})
+   file(MAKE_DIRECTORY "${VTK_WWW_DIR}/apps/${_app}")
+ 
