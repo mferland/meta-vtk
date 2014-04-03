@@ -1,10 +1,8 @@
 DESCRIPTION = "The Visualisation Toolkit"
 HOMEPAGE = "http://www.vtk.org"
 SECTION = "libs"
-LICENSE = "CLOSED"
-# LICENSE = "VTK-License"
-# LICENSE_FLAGS = "license_${PN}_${PV}"
-# LIC_FILES_CHKSUM = "file://Copyright.txt;md5=398284bbebadd05b0563a5c63cdbc164"
+LICENSE = "license_vtk"
+LIC_FILES_CHKSUM = "file://Copyright.txt;md5=71c9a8e9f868215797781c5bd5b254b8"
 
 DEPENDS = "virtual/libx11 virtual/libgl libxt expat freetype jpeg libxml2 libpng zlib tiff vtk-native"
 RDEPENDS_${PN} = "xserver-xorg-extension-glx"
