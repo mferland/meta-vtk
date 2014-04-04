@@ -4,7 +4,7 @@ SECTION = "libs"
 LICENSE = "license_vtk"
 LIC_FILES_CHKSUM = "file://Copyright.txt;md5=71c9a8e9f868215797781c5bd5b254b8"
 
-DEPENDS = "virtual/libx11 virtual/libgl libxt expat freetype jpeg libxml2 libpng zlib tiff vtk-native"
+DEPENDS = "virtual/libx11 virtual/libgl libxt expat freetype jpeg libxml2 libpng zlib tiff vtk-native hdf5 libogg libtheora"
 RDEPENDS_${PN} = "xserver-xorg-extension-glx"
 
 PVMAJOR = "6.1"
@@ -24,19 +24,16 @@ SRC_URI[sha256sum] = "bd7df10a479606d529a8b71f466c44a2bdd11fd534c62ce0aa44fad918
 
 inherit qt4x11 cmake python-dir pythonnative
 
+PYTHON_WRAPPER_DEPENDS = "python python-native"
+PYTHON_WRAPPER_RDEPENDS = "python-twisted python-autobahn python-zopeinterface"
+PYTHON_WRAPPER_CONF = "-DVTK_WRAP_PYTHON:BOOL=ON -DVTK_USE_SYSTEM_TWISTED:BOOL=ON -DVTK_USE_SYSTEM_AUTOBAHN:BOOL=ON -DVTK_USE_SYSTEM_ZOPE:BOOL=ON"
+
 PACKAGECONFIG ??= "GroupImaging GroupQt GroupRendering GroupViews GroupWeb"
 PACKAGECONFIG[GroupImaging] = "-DVTK_Group_Imaging:BOOL=ON,-DVTK_Group_Imaging:BOOL=OFF"
 PACKAGECONFIG[GroupQt] = "-DVTK_Group_Qt:BOOL=ON,-DVTK_Group_Qt:BOOL=OFF"
 PACKAGECONFIG[GroupRendering] = "-DVTK_Group_Rendering:BOOL=ON,-DVTK_Group_Rendering:BOOL=OFF"
 PACKAGECONFIG[GroupViews] = "-DVTK_Group_Views:BOOL=ON,-DVTK_Group_Views:BOOL=OFF"
-PACKAGECONFIG[GroupWeb] = "-DVTK_Group_Web:BOOL=ON \
--DVTK_WRAP_PYTHON:BOOL=ON \
--DVTK_USE_SYSTEM_TWISTED:BOOL=ON \
--DVTK_USE_SYSTEM_AUTOBAHN:BOOL=ON \
--DVTK_USE_SYSTEM_ZOPE:BOOL=ON,\
--DVTK_Group_Web:BOOL=OFF,\
-python python-native,\
-python-twisted python-autobahn python-zopeinterface"
+PACKAGECONFIG[GroupWeb] = "-DVTK_Group_Web:BOOL=ON ${PYTHON_WRAPPER_CONF},-DVTK_Group_Web:BOOL=OFF,${PYTHON_WRAPPER_DEPENDS},${PYTHON_WRAPPER_RDEPENDS}"
 
 # Support for openmpi not available yet
 # PACKAGECONFIG[GroupMPI] = "-DVTK_Group_MPI:BOOL=ON,-DVTK_Group_MPI:BOOL=OFF"
@@ -53,6 +50,9 @@ EXTRA_OECMAKE = "-DBUILD_DOCUMENTATION:BOOL=OFF \
 -DVTK_USE_SYSTEM_ZLIB:BOOL=ON \
 -DVTK_USE_SYSTEM_LIBXML2:BOOL=ON \
 -DVTK_USE_SYSTEM_EXPAT:BOOL=ON \
+-DVTK_USE_SYSTEM_HDF5:BOOL=ON \
+-DVTK_USE_SYSTEM_OGGTHEORA:BOOL=ON \
+-DOGGTHEORA_NO_444_SUBSAMPLING:STRING=0 \
 -DVTK_USE_X:BOOL=ON \
 -DVTK_WRAP_JAVA:BOOL=OFF \
 -DVTK_WRAP_TCL:BOOL=OFF \
@@ -77,7 +77,7 @@ FILES_${PN}-dev += "${libdir}/cmake ${datadir}/vtk-6.1"
 # //Use system-installed JsonCpp
 # VTK_USE_SYSTEM_JSONCPP:BOOL=OFF
 # //Use system-installed LIBPROJ4
-# VTK_USE_SYSTEM_LIBPROJ4:BOOL=OFF
+# VTK_USE_SYSTEM_LIBPROJ4:BOOL=OFF # broken?
 # //Use system-installed NetCDF
 # VTK_USE_SYSTEM_NETCDF:BOOL=OFF
 # //Use system-installed OGGTHEORA
