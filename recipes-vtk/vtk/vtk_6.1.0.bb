@@ -4,7 +4,7 @@ SECTION = "libs"
 LICENSE = "license_vtk"
 LIC_FILES_CHKSUM = "file://Copyright.txt;md5=71c9a8e9f868215797781c5bd5b254b8"
 
-DEPENDS = "virtual/libx11 virtual/libgl libxt expat freetype jpeg libxml2 libpng zlib tiff vtk-native hdf5 libogg libtheora netcdf-cxx"
+DEPENDS = "virtual/libx11 virtual/libgl libxt expat freetype jpeg libxml2 libpng zlib tiff vtk-native hdf5 libogg libtheora netcdf3-cxx"
 RDEPENDS_${PN} = "xserver-xorg-extension-glx"
 
 PVMAJOR = "6.1"
@@ -13,7 +13,6 @@ SRC_URI = "http://www.vtk.org/files/release/${PVMAJOR}/VTK-${PV}.tar.gz \
 file://site-file.cmake \
 file://web_app_compile_fix.patch \
 file://remove_qt_designer_plugin.patch \
-file://findnetcdf_fix.patch \
 "
 
 S = "${WORKDIR}/VTK-${PV}"
@@ -53,8 +52,6 @@ EXTRA_OECMAKE = "-DBUILD_DOCUMENTATION:BOOL=OFF \
 -DVTK_USE_SYSTEM_EXPAT:BOOL=ON \
 -DVTK_USE_SYSTEM_HDF5:BOOL=ON \
 -DVTK_USE_SYSTEM_NETCDF:BOOL=ON \
--DNETCDF_INCLUDE_DIR:PATH=${STAGING_INCDIR} \
--DNETCDF_LIBRARY:PATH=${STAGING_LIBDIR} \
 -DVTK_USE_SYSTEM_OGGTHEORA:BOOL=ON \
 -DOGGTHEORA_NO_444_SUBSAMPLING:STRING=0 \
 -DVTK_USE_X:BOOL=ON \
