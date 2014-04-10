@@ -16,6 +16,6 @@ inherit core-image
 IMAGE_INSTALL += "\
 ${CORE_IMAGE_BASE_INSTALL} \
 ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
-vtk \
-python-vtk \
+cmake \
+libxt expat freetype jpeg libxml2 libpng zlib tiff libogg libtheora \
 "

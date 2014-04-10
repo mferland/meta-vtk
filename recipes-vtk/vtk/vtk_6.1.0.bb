@@ -10,7 +10,6 @@ RDEPENDS_${PN} = "xserver-xorg-extension-glx"
 PVMAJOR = "6.1"
 
 SRC_URI = "http://www.vtk.org/files/release/${PVMAJOR}/VTK-${PV}.tar.gz \
-file://site-file.cmake \
 file://web_app_compile_fix.patch \
 file://remove_qt_designer_plugin.patch \
 "
