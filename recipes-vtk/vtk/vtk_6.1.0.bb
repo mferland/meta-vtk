@@ -12,6 +12,7 @@ PVMAJOR = "6.1"
 SRC_URI = "http://www.vtk.org/files/release/${PVMAJOR}/VTK-${PV}.tar.gz \
 file://web_app_compile_fix.patch \
 file://remove_qt_designer_plugin.patch \
+file://site-file.cmake \
 "
 
 S = "${WORKDIR}/VTK-${PV}"
