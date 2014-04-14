@@ -1,7 +1,8 @@
 DESCRIPTION = "The NetCDF3 CXX-library"
 HOMEPAGE = "http://www.unidata.ucar.edu/software/netcdf/"
 SECTION = "libs"
-LICENSE = "CLOSED"
+LICENSE = "license_netcdf-cxx"
+LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=7a265567ba44537b8d1ed8b406d4b25c"
 
 DEPENDS = "hdf5 netcdf4"
 
