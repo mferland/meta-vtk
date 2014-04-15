@@ -17,8 +17,6 @@ file://site-file.cmake \
 
 S = "${WORKDIR}/VTK-${PV}"
 
-PR = "r1"
-
 SRC_URI[md5sum] = "25e4dfb3bad778722dcaec80cd5dab7d"
 SRC_URI[sha256sum] = "bd7df10a479606d529a8b71f466c44a2bdd11fd534c62ce0aa44fad91883fa34"
 
