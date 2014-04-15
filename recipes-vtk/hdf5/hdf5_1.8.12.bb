@@ -27,7 +27,6 @@ hdf5_cv_ulong_to_float_accurate=yes \
 hdf5_cv_fp_to_ullong_accurate=yes \
 hdf5_cv_fp_to_ullong_right_maximum=yes \
 hdf5_cv_ldouble_to_uint_accurate=yes \
-hdf5_cv_ullong_to_ldouble_precision=yes \
 hdf5_cv_fp_to_integer_overflow_works=yes \
 hdf5_cv_ldouble_to_long_special=no \
 hdf5_cv_long_to_ldouble_special=no \
@@ -35,8 +34,10 @@ hdf5_cv_ldouble_to_llong_accurate=yes \
 hdf5_cv_llong_to_ldouble_correct=yes \
 "
 
-CACHED_CONFIGUREVARS_qemux86 += "${HDF5_CACHED_CONFIGUREVARS}"
-CACHED_CONFIGUREVARS_qemux86-64 += "${HDF5_CACHED_CONFIGUREVARS}"
+CACHED_CONFIGUREVARS_arm += "${HDF5_CACHED_CONFIGUREVARS} hdf5_cv_ullong_to_ldouble_precision=no"
+CACHED_CONFIGUREVARS_i586 += "${HDF5_CACHED_CONFIGUREVARS} hdf5_cv_ullong_to_ldouble_precision=yes"
+CACHED_CONFIGUREVARS_i686 += "${HDF5_CACHED_CONFIGUREVARS} hdf5_cv_ullong_to_ldouble_precision=yes"
+CACHED_CONFIGUREVARS_x86-64 += "${HDF5_CACHED_CONFIGUREVARS} hdf5_cv_ullong_to_ldouble_precision=yes"
 
 EXTRA_OECONF += "--enable-shared --disable-static"
 
