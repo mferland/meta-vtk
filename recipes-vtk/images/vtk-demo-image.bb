@@ -16,7 +16,6 @@ inherit core-image
 IMAGE_INSTALL += "\
 ${CORE_IMAGE_BASE_INSTALL} \
 ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
-cmake \
 vtk \
 python-vtk \
 "
