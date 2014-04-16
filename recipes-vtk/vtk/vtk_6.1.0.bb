@@ -1,21 +1,12 @@
-DESCRIPTION = "The Visualisation Toolkit"
-HOMEPAGE = "http://www.vtk.org"
-SECTION = "libs"
-LICENSE = "license_vtk"
-LIC_FILES_CHKSUM = "file://Copyright.txt;md5=71c9a8e9f868215797781c5bd5b254b8"
+require vtk.inc
 
 DEPENDS = "virtual/libx11 virtual/libgl libxt expat freetype jpeg libxml2 libpng zlib tiff vtk-native hdf5 libogg libtheora netcdf3-cxx"
 RDEPENDS_${PN} = "xserver-xorg-extension-glx"
 
-PVMAJOR = "6.1"
-
-SRC_URI = "http://www.vtk.org/files/release/${PVMAJOR}/VTK-${PV}.tar.gz \
-file://web_app_compile_fix.patch \
+SRC_URI += "file://web_app_compile_fix.patch \
 file://remove_qt_designer_plugin.patch \
 file://site-file.cmake \
 "
-
-S = "${WORKDIR}/VTK-${PV}"
 
 SRC_URI[md5sum] = "25e4dfb3bad778722dcaec80cd5dab7d"
 SRC_URI[sha256sum] = "bd7df10a479606d529a8b71f466c44a2bdd11fd534c62ce0aa44fad91883fa34"
@@ -55,7 +46,7 @@ EXTRA_OECMAKE = "-DBUILD_DOCUMENTATION:BOOL=OFF \
 -DVTK_USE_X:BOOL=ON \
 -DVTK_WRAP_JAVA:BOOL=OFF \
 -DVTK_WRAP_TCL:BOOL=OFF \
--DVTKCompileTools_DIR=${STAGING_LIBDIR_NATIVE}/cmake/vtk-${PVMAJOR} \
+-DVTKCompileTools_DIR=${STAGING_LIBDIR_NATIVE}/cmake/vtk-${MAJ_VER} \
 ${EXTRA_OECONF} \
 "
 

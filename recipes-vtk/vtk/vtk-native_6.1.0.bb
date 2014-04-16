@@ -1,17 +1,8 @@
-DESCRIPTION = "The Visualisation Toolkit"
-HOMEPAGE = "http://www.vtk.org"
-SECTION = "libs"
-LICENSE = "license_vtk"
-LIC_FILES_CHKSUM = "file://Copyright.txt;md5=71c9a8e9f868215797781c5bd5b254b8"
+require vtk.inc
 
 DEPENDS = "cmake-native"
 
-PVMAJOR = "6.1"
-
-SRC_URI = "http://www.vtk.org/files/release/${PVMAJOR}/VTK-${PV}.tar.gz \
-file://0001-vtkCompileTools-Add-a-CompileTools-group.patch"
-
-S = "${WORKDIR}/VTK-${PV}"
+SRC_URI += "file://0001-vtkCompileTools-Add-a-CompileTools-group.patch"
 
 SRC_URI[md5sum] = "25e4dfb3bad778722dcaec80cd5dab7d"
 SRC_URI[sha256sum] = "bd7df10a479606d529a8b71f466c44a2bdd11fd534c62ce0aa44fad91883fa34"
@@ -45,7 +36,7 @@ do_compile() {
 
 do_install_append() {
     sed -i -e 's:${B}/bin:${STAGING_BINDIR_NATIVE}:' ${B}/VTKCompileToolsConfig.cmake
-    install -m 0644 ${B}/VTKCompileToolsConfig.cmake ${D}${libdir}/cmake/vtk-${PVMAJOR}
+    install -m 0644 ${B}/VTKCompileToolsConfig.cmake ${D}${libdir}/cmake/vtk-${MAJ_VER}
 }
 
 BBCLASSEXTEND = "native"
