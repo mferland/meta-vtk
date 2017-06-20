@@ -6,6 +6,9 @@ RDEPENDS_${PN} = "xserver-xorg-extension-glx"
 SRC_URI += "file://web_app_compile_fix.patch \
 file://remove_qt_designer_plugin.patch \
 file://site-file.cmake \
+file://fix_gcc6_compiling.patch \
+file://fix_glintptr_error.patch \
+file://vtk_freetype_compile_fix.patch \
 "
 
 SRC_URI[md5sum] = "25e4dfb3bad778722dcaec80cd5dab7d"
@@ -17,7 +20,7 @@ PYTHON_WRAPPER_DEPENDS = "python python-native"
 PYTHON_WRAPPER_RDEPENDS = "python-twisted python-autobahn python-zopeinterface"
 PYTHON_WRAPPER_CONF = "-DVTK_WRAP_PYTHON:BOOL=ON -DVTK_USE_SYSTEM_TWISTED:BOOL=ON -DVTK_USE_SYSTEM_AUTOBAHN:BOOL=ON -DVTK_USE_SYSTEM_ZOPE:BOOL=ON"
 
-PACKAGECONFIG ??= "GroupImaging GroupQt GroupRendering GroupViews GroupWeb"
+PACKAGECONFIG ??= "GroupImaging GroupQt GroupRendering GroupViews"
 PACKAGECONFIG[GroupImaging] = "-DVTK_Group_Imaging:BOOL=ON,-DVTK_Group_Imaging:BOOL=OFF"
 PACKAGECONFIG[GroupQt] = "-DVTK_Group_Qt:BOOL=ON,-DVTK_Group_Qt:BOOL=OFF"
 PACKAGECONFIG[GroupRendering] = "-DVTK_Group_Rendering:BOOL=ON,-DVTK_Group_Rendering:BOOL=OFF"
@@ -47,7 +50,6 @@ EXTRA_OECMAKE = "-DBUILD_DOCUMENTATION:BOOL=OFF \
 -DVTK_WRAP_JAVA:BOOL=OFF \
 -DVTK_WRAP_TCL:BOOL=OFF \
 -DVTKCompileTools_DIR=${STAGING_LIBDIR_NATIVE}/cmake/vtk-${MAJ_VER} \
-${EXTRA_OECONF} \
 "
 
 PACKAGES =+ "${PN}-web-demo python-${PN} python-${PN}-dbg"
